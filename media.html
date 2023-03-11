@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Professor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        //Criando uma função para calcular a média
+        function calculaMedia(){
+            const url = new URLSearchParams(window.location.search) // Variavel pra pegar os parametros
+            let nota1 = url.get("n1") //Separar n1 para nota1
+            let nota2 = url.get("n2") //Separar n2 para nota2
+
+            let media = (Number(nota1) + Number(nota2)) / 2 //cacular media
+
+            document.getElementById("media").value = media //Jogar o valor calculado da media no input
+            if(media >= 6){
+                document.getElementById("status").innerHTML = "Aprovado"
+                document.getElementById("status").style.color = "green"
+            }
+            else{
+            document.getElementById("status").innerHTML = "Reprovado"
+            document.getElementById("status").style.color = "red"
+           }
+        }   
+    </script>
+</head>
+<body onload="calculaMedia()">
+    <main>
+        <h1>Painel do Professor</h1>
+        <form action="index.html" method="post">
+            <label>A Média do Aluno é:</label>
+            <input type="text" id="media" readonly>
+
+            <p>Portanto está <span id="status"></span></p>
+            <input type="submit" value="Voltar">
+        </form>
+    </main>
+</body>
+</html
